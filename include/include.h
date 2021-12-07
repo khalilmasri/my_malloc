@@ -7,15 +7,24 @@
 #include <string.h>
 #include <sys/mman.h>
 
-#define ALIGNMENT 8
+#define ALIGNMENT 16
+#define MAX_CAP 1024
+#define CHUNK_SIZE (1 << 16)
 
 typedef struct block{
     size_t size;
-    struct block *next;
-    struct block *prev;
+    char allocated;
+    void *address;
 }block_t;
 
-extern struct block *head;
+typedef struct heap_s{
+    size_t block_size;
+    block_t blocks[MAX_CAP];
+}heap_t;
+
+extern heap_t heap;
+extern void *mem;
+extern size_t available_size;
 
 #ifndef MALLOC_H
 #define MALLOC_H
@@ -30,11 +39,9 @@ void *_my_malloc(size_t);
 #define UTILITY_H
 
 size_t align(size_t);
-void *mem_block(block_t*);
-void remove_free_list(block_t*);
-void add_to_free_list(block_t*);
-void *split_mem(block_t*, size_t);
-void *allocate_mem(block_t*, size_t, size_t);
+size_t chunk_align(size_t);
+heap_t add_blocks(size_t);
+void memory_map(size_t);
 
 #endif
 
@@ -46,3 +53,6 @@ void *allocate_mem(block_t*, size_t, size_t);
 void _my_free(void*);
 
 #endif
+
+// ---------------------------------------
+
