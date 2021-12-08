@@ -19,6 +19,11 @@ void memory_map(size_t size){
 
 heap_t add_blocks(size_t size){
 
+    if(heap.block_size+1 == MAX_CAP){
+        printf("Reached Max cap.\n");
+        return heap;
+    }
+
     heap.blocks[heap.block_size-1].address = mem;
     heap.blocks[heap.block_size-1].size = size;
     heap.blocks[heap.block_size-1].allocated = 1;
