@@ -9,7 +9,7 @@ size_t chunk_align(size_t size){
 }
 
 void memory_map(size_t size){
-    mem = mmap(0, chunk_align(size), PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANON, -1 , 0);
+    mem = mmap(0, chunk_align(size), PROT_READ | PROT_WRITE | PROT_EXEC, MAP_PRIVATE | MAP_ANON, 0 , 0);
     available_size = chunk_align(size);
     heap.block_size = 1;
     heap.blocks[0].address = mem;
