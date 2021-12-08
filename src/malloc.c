@@ -24,7 +24,7 @@ void split_heap(int index, size_t size){
     heap.blocks[i].allocated = 0;
 
     i -= 1;
-    heap.blocks[i].address = heap.blocks[i+1].address - heap.blocks[i+1].size;
+    heap.blocks[i].address = heap.blocks[i-1].address - heap.blocks[i-1].size;
     heap.blocks[i].size = size;
     heap.blocks[i].allocated = 1;
 }
@@ -54,7 +54,7 @@ void *_my_malloc(size_t size){
     if(size <= 0)
         return NULL;
 
-    size_t allocate_size = align(size);
+    size_t allocate_size = size;
 
     void *new;
 
