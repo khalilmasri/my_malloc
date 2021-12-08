@@ -1,2 +1,3 @@
-./obj
-./my_malloc
+obj
+obj/*.o
+my_malloc
