@@ -49,12 +49,12 @@ int main(){
     char *s = _my_malloc(20);
     strcpy(s, "mama");
     printf("s: %s s: %ld address: %p \n", s, strlen(s), s);
+    printf("src: %s src: %ld address: %p \n", src, strlen(src), src);
     printf("dest: %s dest: %ld address: %p \n", dest, strlen(dest), dest);
-    printf("r: %s r: %ld address: %p \n", r, strlen(r), r);
     printf("t: %s t: %ld address: %p \n", t, strlen(t), t);
-    /* char *k = _my_malloc(30); */
-    /* strcpy(k, "ho"); */
-    /* printf("s: %s s: %ld address: %p \n", k, strlen(k), k); */
+    char *k = _my_malloc(30);
+    strcpy(k, "ho");
+    printf("s: %s s: %ld address: %p \n", k, strlen(k), k);
     /* printf("dest: %s dest: %ld address: %p \n", dest, strlen(dest), dest); */
 
     return 0;
