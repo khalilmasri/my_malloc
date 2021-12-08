@@ -35,6 +35,23 @@ void *_my_malloc(size_t);
 
 // ---------------------------------------
 
+#ifndef REALLOC_H
+#define REALLOC_H
+
+void *_my_realloc(void*,size_t);
+
+#endif
+
+// ---------------------------------------
+
+#ifndef CALLOC_H
+#define CALLOC_H
+
+void *_my_calloc(size_t,size_t);
+
+#endif
+
+// ---------------------------------------
 #ifndef UTILITY_H
 #define UTILITY_H
 
@@ -42,6 +59,7 @@ size_t align(size_t);
 size_t chunk_align(size_t);
 heap_t add_blocks(size_t);
 void memory_map(size_t);
+void shift_back(size_t);
 
 #endif
 
@@ -50,7 +68,8 @@ void memory_map(size_t);
 #ifndef FREE_H
 #define FREE_H
 
-void _my_free(void*);
+#define _my_free(ptr) (my_free(ptr)); (ptr = NULL);
+void my_free(void*);
 
 #endif
 
