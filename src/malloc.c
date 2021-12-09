@@ -25,10 +25,9 @@ void* split_heap(size_t index, size_t size){
     heap.blocks[i].allocated = 0;
 
     i-=1;
-    heap.blocks[i].address = heap.blocks[i-1].address + heap.blocks[i-1].size;
     heap.blocks[i].size = size;
     heap.blocks[i].allocated = 1;
-    
+
     return heap.blocks[i].address;
 
 }
@@ -66,7 +65,7 @@ void *_my_malloc(size_t size){
 
     if(!( new = search_available_blocks(allocate_size))){
         heap = add_blocks(allocate_size);
-        return heap.blocks[heap.block_size-1].address;
+        return heap.blocks[heap.block_size-2].address;
     }
 
     return new;
