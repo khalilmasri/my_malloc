@@ -40,8 +40,7 @@ heap_t add_blocks(size_t size){
 
 void shift_back(size_t index){
 
-    for(size_t i = heap.block_size -1; i > index + 1; i--){
-        heap.blocks[i] = heap.blocks[i-1];
+    for(size_t i = index; i < heap.block_size-1; i++){
+        heap.blocks[i] = heap.blocks[i+1];
     }
-
 }
